@@ -1,0 +1,23 @@
+name = "bilipgc"
+main = "src-worker/index.ts"
+compatibility_date = "2023-05-27"
+workers_dev = false
+
+routes = [
+  { pattern = "bilipgc.cfm.moe/api/addSubtitle", zone_id = "0895789f7f10ff92afcd5410777da6bf" },
+  { pattern = "bilipgc.cfm.moe/bilipgc.grpc.js", zone_id = "0895789f7f10ff92afcd5410777da6bf" },
+  { pattern = "bilipgc.cfm.moe/bilipgc.req.hdslb.subtitle.js", zone_id = "0895789f7f10ff92afcd5410777da6bf" },
+  { pattern = "bilipgc.cfm.moe/bilipgc.resp.web.subtitle.js", zone_id = "0895789f7f10ff92afcd5410777da6bf" },
+  { pattern = "bilipgc.cfm.moe/bilipgc.rule.api.js", zone_id = "0895789f7f10ff92afcd5410777da6bf" },
+  { pattern = "bilipgc.cfm.moe/BiliPGC.sgmodule", zone_id = "0895789f7f10ff92afcd5410777da6bf" },
+]
+
+r2_buckets = [
+  { binding = "R2", bucket_name = "bilipgc", preview_bucket_name = "bilipgc" }
+]
+
+[site]
+bucket = "./dist"
+
+[placement]
+mode = "smart"
