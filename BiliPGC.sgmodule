@@ -4,7 +4,7 @@
 [Script]
 BiliPGC.API = type=rule,script-path=https://bilipgc.cfm.moe/bilipgc.rule.api.js
 BiliPGC.resp.WEB.Subtitle = type=http-response,pattern=^https?:\/\/api\.bilibili\.com\/x\/player(\/wbi)?\/v2\/?(\?.+)?$,requires-body=true,max-size=0,debug=1,script-path=https://bilipgc.cfm.moe/bilipgc.resp.web.subtitle.js
-BiliPGC.gRPC.PlayURL = type=http-request,pattern=^https?:\/\/(grpc\.biliapi\.net|app\.bilibili\.com)\/bilibili\.pgc\.gateway\.player\.v2\.PlayURL\/PlayView(\?.+)?$,requires-body=true,binary-body-mode=1,debug=1,script-path=https://bilipgc.cfm.moe/bilipgc.grpc.js
+BiliPGC.gRPC.PlayURL = type=http-request,pattern=^https?:\/\/(grpc\.biliapi\.net|app\.bilibili\.com)\/bilibili\.((pgc\.gateway\.player\.v2\.PlayURL\/PlayView)|(app\.playerunite\.v1\.Player\/PlayViewUnite))(\?.+)?$,requires-body=true,binary-body-mode=1,debug=1,script-path=https://bilipgc.cfm.moe/bilipgc.grpc.js
 BiliPGC.gRPC.DM = type=http-response,pattern=^https?:\/\/(grpc\.biliapi\.net|app\.bilibili\.com)\/bilibili\.community\.service\.dm\.v1\.DM\/DmView(\?.+)?$,requires-body=true,binary-body-mode=1,timeout=15,max-size=0,debug=1,script-path=https://bilipgc.cfm.moe/bilipgc.grpc.js
 BiliPGC.HDSLB.Subtitle = type=http-request,pattern=^https?:\/\/.*\.hdslb\.com\/.*bilipgc=true$,requires-body=true,debug=1,script-path=https://bilipgc.cfm.moe/bilipgc.req.hdslb.subtitle.js
 

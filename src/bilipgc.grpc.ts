@@ -4,6 +4,7 @@ import URL from "url-parse";
 import { checkNull } from "../utils";
 import { DmViewReply } from "./protos/bilibili.community.service.dm.v1/DM";
 import { PlayViewReq } from "./protos/bilibili.pgc.gateway.player.v2/PlayURL";
+import { PlayViewUniteReq } from "./protos/bilibili.app.playerunite.v1/playerunite";
 import { Cache, Fetch, checkPGCID, log, newRawBody } from "./utils";
 
 // --- CONFIG ---
@@ -16,7 +17,10 @@ const { pathname } = new URL($request.url);
 log(`url: ${$request.url} | pathname: ${pathname}`);
 
 (async (): Promise<never> => {
-  if (pathname === "/bilibili.pgc.gateway.player.v2.PlayURL/PlayView") {
+  if (
+    pathname === "/bilibili.pgc.gateway.player.v2.PlayURL/PlayView" || // 老
+    pathname === "/bilibili.app.playerunite.v1.Player/PlayViewUnite" // 新
+  ) {
     const rawBody = ($request as Response$request).body as Uint8Array;
     log(`rawBody === undefined: ${rawBody === undefined}`);
 
@@ -27,10 +31,29 @@ log(`url: ${$request.url} | pathname: ${pathname}`);
       rawBody_body = pako.ungzip(rawBody_body);
     }
 
-    const rawBody_body_json = PlayViewReq.fromBinary(rawBody_body);
+    const PGCID = ((): {
+      epId: number | null;
+      seasonId: number | null;
+    } => {
+      if (pathname === "/bilibili.pgc.gateway.player.v2.PlayURL/PlayView") {
+        const rawBody_body_json = PlayViewReq.fromBinary(rawBody_body);
+        return {
+          epId: rawBody_body_json.epId,
+          seasonId: rawBody_body_json.seasonId,
+        };
+      } else {
+        const rawBody_body_json = PlayViewUniteReq.fromBinary(rawBody_body);
+        const ep_id = Number(rawBody_body_json.extraContent.ep_id);
+        const season_id = Number(rawBody_body_json.extraContent.season_id);
+        return {
+          epId: ep_id > 0 ? ep_id : null,
+          seasonId: season_id > 0 ? season_id : null,
+        };
+      }
+    })()
 
     const checkPGCID_data = await (async (): Promise<"HK" | "TW" | "MO" | null> => {
-      for (const [id, prefix] of [[rawBody_body_json.epId, "ep"], [rawBody_body_json.seasonId, "ss"]]) {
+      for (const [id, prefix] of [[PGCID.epId, "ep"], [PGCID.seasonId, "ss"]]) {
         if (id !== 0 && !checkNull(id)) {
           const idStr = `${prefix}${id}`;
 

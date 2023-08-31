@@ -4,8 +4,9 @@
   "private": true,
   "scripts": {
     "build": "ts-node -T esbuild.ts",
-    "protoc": "run-s protoc:PlayURL protoc:DM",
-    "protoc:PlayURL": "protoc --ts_out src/protos --ts_opt long_type_number --proto_path protos protos/bilibili.pgc.gateway.player.v2/PlayURL.proto",
+    "protoc": "run-s protoc:pgc_PlayURL protoc:app_PlayURL protoc:DM",
+    "protoc:pgc_PlayURL": "protoc --ts_out src/protos --ts_opt long_type_number --proto_path protos protos/bilibili.pgc.gateway.player.v2/PlayURL.proto",
+    "protoc:app_PlayURL": "protoc --ts_out src/protos --ts_opt long_type_number --proto_path protos protos/bilibili.app.playerunite.v1/playerunite.proto",
     "protoc:DM": "protoc --ts_out src/protos --proto_path protos protos/bilibili.community.service.dm.v1/DM.proto",
     "dev": "wrangler dev",
     "dev:remote": "wrangler dev --remote",
