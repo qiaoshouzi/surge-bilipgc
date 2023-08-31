@@ -23,7 +23,8 @@ log(`url: ${$request.url} | hostname: ${hostname} | pathname: ${pathname}`);
       if (hostname === "www.bilibili.com" && /^\/bangumi\/play\/(ss|ep)\d+$/.test(pathname)) {
         return pathname.replace("/bangumi/play/", "");
       } else if (hostname === "api.bilibili.com" && [
-        "/pgc/player/web/playurl",
+        "/pgc/player/web/playurl", // Web Playurl 老
+        "/pgc/player/web/v2/playurl", // Web Playurl 新(v2)
         "/pgc/view/web/season",
         "/pgc/view/v2/app/season"
       ].includes(pathname)) {
