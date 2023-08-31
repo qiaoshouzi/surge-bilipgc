@@ -12,7 +12,14 @@ const { hostname, pathname } = new URL($request.url);
 log(`url: ${$request.url} | hostname: ${hostname} | pathname: ${pathname}`);
 
 (async (): Promise<never> => {
-  if (hostname === "api.bilibili.com" && pathname === "/x/player/v2") {
+  
+  if (
+    hostname === "api.bilibili.com" &&
+    [
+      "/x/player/v2", // 老
+      "/x/player/wbi/v2" // 新
+    ].includes(pathname)
+  ) {
     const body_json = (() => {
       try {
         return JSON.parse($response.body as string) as {
