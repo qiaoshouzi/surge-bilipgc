@@ -17,22 +17,22 @@
     "@cloudflare/kv-asset-handler": "^0.3.0",
     "crypto-js": "^4.1.1",
     "pako": "^2.1.0",
-    "typescript": "^5.1.6",
+    "typescript": "^5.2.2",
     "url-parse": "^1.5.10"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "^4.20230717.1",
-    "@protobuf-ts/plugin": "^2.9.0",
-    "@tsconfig/node16": "^16.1.0",
+    "@cloudflare/workers-types": "^4.20230821.0",
+    "@protobuf-ts/plugin": "^2.9.1",
+    "@tsconfig/node16": "^16.1.1",
     "@types/crypto-js": "^4.1.1",
     "@types/node": "16.x",
     "@types/pako": "^2.0.0",
-    "@types/url-parse": "^1.4.8",
-    "esbuild": "^0.18.16",
+    "@types/url-parse": "^1.4.9",
+    "esbuild": "^0.19.2",
     "esbuild-plugin-clean": "^1.0.1",
-    "npm-check-updates": "^16.10.16",
+    "npm-check-updates": "^16.13.2",
     "npm-run-all": "^4.1.5",
     "ts-node": "^10.9.1",
-    "wrangler": "^3.3.0"
+    "wrangler": "^3.6.0"
   }
 }
