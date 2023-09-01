@@ -13,5 +13,5 @@
 ## 开发
 
 `yarn build` 构建Surge脚本  
-`yarn dev` 调试worker
+`yarn dev` 调试worker  
 `yarn deploy` 部署
