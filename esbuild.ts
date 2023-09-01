@@ -68,7 +68,7 @@ try {
     const fileName = fileNameList[i];
     const newFileName = newFileNameList[i];
     sgmoduleRaw = sgmoduleRaw.replace(
-      `https://bilipgc.cfm.moe/${fileName}`, `https://bilipgc.cfm.moe/${newFileName}`
+      new RegExp(`https://bilipgc.cfm.moe/${fileName}`, "g"), `https://bilipgc.cfm.moe/${newFileName}`
     );
   }
   fs.writeFileSync(
